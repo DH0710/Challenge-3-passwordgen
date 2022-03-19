@@ -50,6 +50,24 @@ console.log( 'typesArr:', typesArr);
     }
 
 
+//start function to generate password
+function generatePassword() {
+    //ask for users input
+ enter = parseInt(prompt("How many characters would you like your password? Choose between 8 and 128"));
+    if (!enter) {
+     alert("This needs a value");
+    } else if (enter < 8 || enter > 128) {
+    //validates user input
+     enter = parseInt(prompt("You must choose between 8 and 128"));
+    } else {
+    //prompts after user input validated
+     confirmNumber = confirm("Will this contain numbers? Ok for YES. Cancel for NO.");
+
+
+
+
+
+
 
 // Generator functions - http://www.net-comber.com/charset.html
 
