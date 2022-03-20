@@ -161,11 +161,11 @@ function symbolsInput() {
 // function that calls all of my criteria functions 
 
 function generatePassword() {
-    numbersinput();
-    lowerCaseCheck();
-    upperCaseCheck();
-    symbolsInput();
-
+    // numbersinput();
+    // lowerCaseCheck();
+    // upperCaseCheck();
+    // symbolsInput();
+    return numbersinput(), lowerCaseCheck(), upperCaseCheck(), symbolsInput();
 }
 
 
