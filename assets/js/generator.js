@@ -1,55 +1,14 @@
-// DOM elements
-
-// const uppercaseEl = document.getElementById('uppercase');
-// const lowercaseEl = document.getElementById('lowercase');
-// const numbersEl = document.getElementById('numbers');
-// const symbolsEl = document.getElementById('symbols');
-// const generateEl = document.getElementById('generate');
-// const clipboardEl = document.getElementById('clipboard');
 
 
-// const randomFunc = {
-//     lower: getRandomLower,
-//     upper: getRandomUpper,
-//     number: getRandomNumber,
-//     symbol: getRandomSymbol, 
-// };
 
-// generateEl.addEventListener('click', () => {
-//     const length = +lengthEl.value;
-//     const hasLower = lowerCaseEl.checked;
-//     const hasUpper = uppercaseEl. checked;
-//     const hasNumber = numbersEl.checked;
-//     const hasSymbol = symbolsEl.checked;
 
-//     resultEl.innerText = generatePassword(
-//         hasLower, 
-//         hasUpper, 
-//         hasNumber,  
-//         hasSymbol, 
-//         length
-//     );
-//     });
 
-// // Generate password function
-// function generatePassword( lower, upper, number, symbol, length)  {
-// // 1. Init pw par
-// // 2. Filter out unchecked types
-// // 3. Loop over length call generator function for each type 
-// // 4. Add final pw to the pw var and return
+const lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+const upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N" , "O", "P", "Q", "R" , "S", "T" , "U" , "V", "W" ,"X", "Y", "Z"];
+const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+const symbols = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-"];
 
-// let generatedPassword = '';
 
-// const typesCount = lower + upper + number + symbol;
-
-// console.log('typesCount:', typesCount);
-
-// const typesArr = [{ lower }, { upper }, { number }, { symbol }]. filter
-// (
-//     item => Objecct.values(item)[0]
-//     );
-// console.log( 'typesArr:', typesArr);
-//     }
 
 
 
@@ -89,18 +48,33 @@
 // function that receives number of characters 
 // function that validates input number 
 var passwordlength = 0
-function numbersinput() {
+function passwordlengthinput() {
     //ask for users input
     passwordlength = parseInt(prompt("How many characters would you like your password? Choose between 8 and 128"));
     if (passwordlength >= 8 && passwordlength <= 128) {
-        return true
+        return passwordlength
 
     } else {
         //validates user input
-        alert = parseInt(prompt("That response is invalid!"));
-        numbersinput()
+        alert("That response is invalid!");
+        return passwordlengthinput()
     }
 }
+
+function numbersInput() {
+    var numbersInput = window.prompt("Do you need numbers? Enter Y for YES and N for NO.");
+    // validate response
+    if (numbersInput === "Y" || numbersInput === "y") {
+        return true;
+    } else if (numbersInput === "N" || numbersInput === "n") {
+        return false;
+    } else {
+        window.alert("That response was not valid!");
+        numbersInput();// recursively call this function until response is valid
+    }
+}
+
+
 
 
 
@@ -147,11 +121,11 @@ function symbolsInput() {
     if (symbolsInput === "Y" || symbolsInput === "y") {
         return true;
     } else if (symbolsInput === "N" || symbolsInput === "n") {
-         return false;
+        return false;
     } else {
-      window.alert("That response was not valid");
-      symbolsInput();
-        
+        window.alert("That response was not valid");
+        symbolsInput();
+
     }
 }
 
@@ -161,11 +135,47 @@ function symbolsInput() {
 // function that calls all of my criteria functions 
 
 function generatePassword() {
-    // numbersinput();
-    // lowerCaseCheck();
-    // upperCaseCheck();
-    // symbolsInput();
-    return numbersinput(), lowerCaseCheck(), upperCaseCheck(), symbolsInput();
+    var genpassword = []
+    var passwordlength = passwordlengthinput()
+    var lowerChar = lowerCaseCheck()
+    var upperChar = upperCaseCheck()
+    var symbolChar = symbolsInput()
+    var numberChar = numbersInput()
+ 
+    while (genpassword.length < passwordlength ) {
+
+        if (lowerChar === true) {
+            genpassword.push(lowerCase[Math.floor(Math.random() * lowerCase.length)])
+            if (genpassword.length === passwordlength) {
+                break;
+            };
+                
+        }
+        
+        if (upperChar === true) {
+            genpassword.push(upperCase[Math.floor(Math.random() * upperCase.length)])
+            if (genpassword.length === passwordlength) {
+                break;
+            };
+        }
+
+        if (symbolChar === true) {
+            genpassword.push(symbols[Math.floor(Math.random() * symbols.length)])
+            if (genpassword.length === passwordlength) {
+                break;
+            };
+        }
+
+        if (numberChar === true) {
+            genpassword.push(numbers[Math.floor(Math.random() * numbers.length)])
+            if (genpassword.length === passwordlength) {
+                break;
+            };
+
+        }
+    }
+    return genpassword
+
 }
 
 
